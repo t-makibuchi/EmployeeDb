@@ -2,9 +2,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Employee List</title>
 </head>
 <body>
-	<h1>Hello, World!</h1>
+	<h1>Employee List</h1>
+	<table>
+		<tr th:each="obj : ${employeeList}">
+			<td th:text="${obj.employeeId}"></td>
+			<td th:text="${obj.familyName}"></td>
+		</tr>
+	</table>
 </body>
 </html>
