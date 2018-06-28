@@ -6,10 +6,12 @@
 </head>
 <body>
 	<h1>Employee List</h1>
+	<button type="submit" onclick="location.href='../employeeInput'" class="btn btn-default">新規</button>
 	<table>
 		<tr th:each="obj : ${employeeList}">
-			<td th:text="${obj.employeeId}"></td>
+			<td><a href="/employeeDetail" th:href="@{/employeeDetail(seqNo=${obj.seqNo})}" th:text="${obj.seqNo}"></a></td>
 			<td th:text="${obj.familyName}"></td>
+			<td th:text="${obj.givenName}"></td>
 		</tr>
 	</table>
 </body>

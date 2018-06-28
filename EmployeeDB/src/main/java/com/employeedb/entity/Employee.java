@@ -17,28 +17,24 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee implements Serializable {
+public class Employee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "employee_id", nullable = false)
-	private Integer employeeId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "seq_no", nullable = false, unique = true)
+	private Long seqNo;
 	
-	@Column(name = "family_name", nullable = false)
+	@Column(name = "family_name", nullable = true)
 	private String familyName;
 	
-	@Column(name = "first_name", nullable = false)
-	private String firstName;
+	@Column(name = "given_name", nullable = true)
+	private String givenName;
 	
-	@Column(name = "department", nullable = false)
+	@Column(name = "department", nullable = true)
 	private String department;
 	
-//	public Integer getEmployeeId() {
-//		return employeeId;
-//	}
-//	
-//	public String getFamilyName() {
-//		return familyName;
-//	}
+	@Column(name = "del_flg", nullable = false)
+	private Long delFlg;
+
 		
 }

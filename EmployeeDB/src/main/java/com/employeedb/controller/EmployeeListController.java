@@ -12,7 +12,7 @@ import com.employeedb.entity.Employee;
 import com.employeedb.service.EmployeeService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/employeeList")
 public class EmployeeListController {
 	
 	@Autowired
