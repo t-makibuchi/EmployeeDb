@@ -9,11 +9,11 @@
 		<form method="post" th:action="@{./employeeEdit/submit}">
 			<table>
 				<tr>
-					<td th:text="Family Name："></td>
+					<td th:text="'Family Name：'"></td>
 					<td><input type="text" class="form-control" id="familyName" name="familyName" th:field="${employee.familyName}"/></td>
 				</tr>
 				<tr>
-					<td th:text="Given Name："></td>
+					<td th:text="'Given Name：'"></td>
 					<td><input type="text" id="givenName" name="givenName" th:field="${employee.givenName}"/></td>
 				</tr>
 			</table>
