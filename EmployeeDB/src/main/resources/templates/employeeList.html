@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Employee List</h1>
-	<button type="submit" onclick="location.href='../employeeInput'" class="btn btn-default">新規</button>
+	<button type="submit" onclick="location.href='../employeeInput'" class="btn btn-default">New</button>
 	<table>
 		<tr th:each="obj : ${employeeList}">
 			<td><a href="/employeeDetail" th:href="@{/employeeDetail(seqNo=${obj.seqNo})}" th:text="${obj.seqNo}"></a></td>
