@@ -7,6 +7,10 @@
 <body>
 	<h1>Employee Detail</h1>
 	<button type="button" th:onClick="'location.href = \'' + @{../employeeEdit?seqNo={id}(id=${employee.seqNo})} + '\''">編集</button>
+	<form method="post" th:action="@{./employeeDetail/delete}">
+			<button type="submit" class="btn btn-default">削除</button>
+			<input type="hidden" name="seqNo" th:value="${employee.seqNo}" />
+		</form>
 	<table>
 		<tr>
 			<td th:text="従業員番号："></td>
@@ -22,6 +26,6 @@
 		</tr>
 	</table>
 	<br/>
-	<a href="/employeList" th:href="@{/employeeList}">戻る</a>
+	<a href="/employeList" th:href="@{/employeeList}">一覧画面へ戻る</a>
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.employeedb.entity.Employee;
+import com.employeedb.form.EmployeeForm;
 import com.employeedb.service.EmployeeService;
 
 @Controller
@@ -22,11 +23,24 @@ public class EmployeeDetailController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView mav, @RequestParam("seqNo") String seqNo) {
 		
-		mav.setViewName("employeeDetail");
 		Employee employee = employeeService.findById(Long.parseLong(seqNo));
-		mav.addObject("employee", employee);
+		if (employee != null) {
+			mav.setViewName("employeeDetail");
+			mav.addObject("employee", employee);
+		} else {
+			mav.setViewName("illegalUrl");
+		}
+		
 		
 		return mav;
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(EmployeeForm employeeForm) {
+
+		employeeService.delete(employeeForm);
+		return "redirect:../employeeList";
+
 	}
 	
 }
