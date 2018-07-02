@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>User Input</title>
+</head>
+	<body>
+		<h1>Employee DB</h1>
+		<form method="post" th:action="@{./login/submit}">
+			<table>
+				<tr>
+					<td th:text="'User Name：'"></td>
+					<td><input type="text" class="form-control" id="userName" name="userName"/></td>
+				</tr>
+				<tr>
+					<td th:text="'Password：'"></td>
+					<td><input type="text" id="password" name="password"/></td>
+				</tr>
+			</table>
+			<button type="submit" class="btn btn-default">Log In</button>
+		</form>
+	</body>
+</html>
