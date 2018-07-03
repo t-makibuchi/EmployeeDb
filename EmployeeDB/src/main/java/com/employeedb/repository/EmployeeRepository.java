@@ -11,5 +11,7 @@ import com.employeedb.entity.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	
 	List<Employee> findByDelFlgEquals(Long delFlg);
+	
+	Employee findByUserNameIsAndDelFlgEquals(String userName, Long delFlg);
 
 }
