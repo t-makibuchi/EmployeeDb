@@ -12,6 +12,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	
 	List<Employee> findByDelFlgEquals(Long delFlg);
 	
-	Employee findByUserNameIsAndDelFlgEquals(String userName, Long delFlg);
+	Employee findByUsernameIsAndDelFlgEquals(String username, Long delFlg);
 
 }

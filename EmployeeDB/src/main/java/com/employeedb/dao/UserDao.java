@@ -18,8 +18,8 @@ public class UserDao extends User {
 	public String password;
 	
 	public UserDao(Employee employee) {
-		super(employee.getUserName(), employee.getPassword(), true, true, true, true, new ArrayList<GrantedAuthority>());
-        userName = employee.getUserName();
+		super(employee.getUsername(), employee.getPassword(), true, true, true, true, new ArrayList<GrantedAuthority>());
+        userName = employee.getUsername();
         password = employee.getPassword();
         seqNo = employee.getSeqNo();
 	}

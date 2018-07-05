@@ -18,17 +18,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "seq_no", nullable = false, unique = true)
 	private Long seqNo;
 	
-	@Column(name = "user_name", nullable = false, unique = true)
-	private String userName;
+	@Column(name = "username", nullable = false, unique = true)
+	private String username;
 	
 	@Column(name = "password", nullable = false)
 	private String password;
+	
+	@Column(name = "role", nullable = false)
+	private String role;
 	
 	@Column(name = "family_name", nullable = true)
 	private String familyName;
