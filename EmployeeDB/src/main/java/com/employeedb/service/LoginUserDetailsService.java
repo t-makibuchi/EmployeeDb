@@ -50,7 +50,6 @@ public class LoginUserDetailsService implements UserDetailsService {
 	private Collection<GrantedAuthority> getAuthorities(Employee employee){
 		
 		String role = employee.getRole();
-		String apssword = passwordEncoder.encode("aa");
 
 		switch (role) {
 			case "admin":
