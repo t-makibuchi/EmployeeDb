@@ -26,6 +26,7 @@ public class WebSecuriityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/employeeList").failureUrl("/login-error")
                 .permitAll()
                 .and()
             .logout()
@@ -34,8 +35,8 @@ public class WebSecuriityConfig extends WebSecurityConfigurerAdapter {
  
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-            userDetailsService(userDetailsService).passwordEncode(passwordEncoder());
+        auth.
+            userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
     
     @Bean

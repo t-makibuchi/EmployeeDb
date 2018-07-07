@@ -19,6 +19,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Employee {
 	
+	public Employee (String username, String password, String role) {
+		setSeqNo(0L);
+		setUsername(username);
+		setPassword(password);
+		setRole(role);
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "seq_no", nullable = false, unique = true)

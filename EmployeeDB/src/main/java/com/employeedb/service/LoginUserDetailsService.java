@@ -50,16 +50,28 @@ public class LoginUserDetailsService implements UserDetailsService {
 	private Collection<GrantedAuthority> getAuthorities(Employee employee){
 		
 		String role = employee.getRole();
-		Collection<GrantedAuthority> authList =  AuthorityUtils.createAuthorityList("");
-		
+		String apssword = passwordEncoder.encode("aa");
+
 		switch (role) {
 			case "admin":
-				authList = AuthorityUtils.createAuthorityList("ROLE_ADMIN","ROLE_USER");
+				return AuthorityUtils.createAuthorityList("ROLE_ADMIN","ROLE_USER");
 			case "user":
-				authList = AuthorityUtils.createAuthorityList("ROLE_USER");
+			default :
+				return AuthorityUtils.createAuthorityList("ROLE_USER");
 		}
 		
-		return authList;
 	}
+	
+	@Transactional
+    public void registerAdmin(String username, String password) {
+        Employee employee = new Employee(username, passwordEncoder.encode(password),"admin");
+        repository.save(employee);
+    }
+
+    @Transactional
+    public void registerUser(String username, String password) {
+    	Employee employee = new Employee(username, passwordEncoder.encode(password),"user");
+        repository.save(employee);
+    }
 	
 }
