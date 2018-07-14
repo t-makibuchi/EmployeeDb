@@ -21,7 +21,7 @@ public class LogoutController {
 	@Autowired
 	public EmployeeService employeeService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String index(Model model) {
 		model.addAttribute("iserror",false);
 		return "login";
