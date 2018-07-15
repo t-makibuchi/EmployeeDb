@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.employeedb.entity.Employee;
-import com.employeedb.form.EmployeeForm;
+import com.employeedb.form.EmployeeInputForm;
 import com.employeedb.service.EmployeeService;
 
 @Controller

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.employeedb.entity.Employee;
-import com.employeedb.form.EmployeeForm;
+import com.employeedb.form.EmployeeInputForm;
 import com.employeedb.service.EmployeeService;
 
 @Controller
@@ -27,9 +27,9 @@ public class EmployeeInputController {
 	}
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public String submit(EmployeeForm employeeForm) {
+	public String submit(EmployeeInputForm employeeInputForm) {
 
-		employeeService.create(employeeForm);
+		employeeService.create(employeeInputForm);
 		return "redirect:../employeeList";
 	}
 	

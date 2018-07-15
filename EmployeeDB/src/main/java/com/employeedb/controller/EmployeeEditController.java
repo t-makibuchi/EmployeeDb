@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.employeedb.entity.Employee;
-import com.employeedb.form.EmployeeForm;
+import com.employeedb.form.EmployeeEditForm;
+import com.employeedb.form.EmployeeInputForm;
 import com.employeedb.service.EmployeeService;
 
 @Controller
@@ -35,11 +36,11 @@ public class EmployeeEditController {
 	}
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public String submit(EmployeeForm employeeForm) {
+	public String submit(EmployeeEditForm employeeEditForm) {
 
-		Employee employee = employeeService.findById(employeeForm.getSeqNo());
+		Employee employee = employeeService.findById(employeeEditForm.getSeqNo());
 		if (employee != null) {
-			employeeService.edit(employeeForm);
+			employeeService.edit(employeeEditForm);
 			return "redirect:../employeeList";
 		}
 		
