@@ -17,11 +17,15 @@ public class WebSecuriityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	private static String ROLE_ADMIN = "ADMIN";
+	private static String ROLE_USER = "USER";
+	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
                 .antMatchers("/login/*").permitAll()
+                .antMatchers("/employeeInput", "/employeeDetail/delete").hasRole(ROLE_ADMIN)
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
