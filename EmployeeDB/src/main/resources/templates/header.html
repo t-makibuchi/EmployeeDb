@@ -1,5 +1,5 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<p><span sec:authentication="principal.username"></span></p>
+<p><span sec:authentication="principal.displayname"></span>さん</p>
 <form role="form" id="logout" th:action="@{/logout}" method="post" name="logoutForm">
     <a href="javascript:document.logoutForm.submit()">Logout</a>
 </form>

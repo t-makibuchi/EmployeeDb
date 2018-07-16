@@ -8,10 +8,12 @@
 <body>
 	<h1>Employee Detail</h1>
 	<button type="button" th:onClick="'location.href = \'' + @{../employeeEdit?seqNo={id}(id=${employee.seqNo})} + '\''">Edit</button>
-	<form method="post" th:action="@{./employeeDetail/delete}">
+	<div sec:authorize="hasRole('ADMIN')">
+		<form method="post" th:action="@{./employeeDetail/delete}">
 			<button type="submit" class="btn btn-default">Delete</button>
 			<input type="hidden" name="seqNo" th:value="${employee.seqNo}" />
 		</form>
+	</div>
 	<table>
 		<tr>
 			<td th:text="'Employee No：'"></td>

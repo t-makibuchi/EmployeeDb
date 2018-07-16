@@ -7,7 +7,9 @@
 </head>
 <body>
 	<h1>Employee List</h1>
-	<button type="submit" onclick="location.href='../employeeInput'" class="btn btn-default">New</button>
+	<div sec:authorize="hasRole('ADMIN')">
+		<button type="submit" onclick="location.href='../employeeInput'" class="btn btn-default">New</button>
+	</div>
 	<table>
 		<tr th:each="obj : ${employeeList}">
 			<td><a href="/employeeDetail" th:href="@{/employeeDetail(seqNo=${obj.seqNo})}" th:text="${obj.seqNo}"></a></td>

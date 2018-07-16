@@ -45,12 +45,18 @@ public class EmployeeService {
 		repository.save(employee);
 	}
 	
-	public void edit(EmployeeEditForm EmployeeEditForm) {
-		Employee employee = findById(EmployeeEditForm.getSeqNo());
-		if(employee != null && employee.getDelFlg() == 0) {
-			BeanUtils.copyProperties(EmployeeEditForm, employee);
+	public void edit(EmployeeEditForm employeeEditForm) {
+		Employee tmpEmployee = findById(employeeEditForm.getSeqNo());
+		Employee employee = new Employee();
+		if(tmpEmployee != null && tmpEmployee.getDelFlg() == 0) {
+			BeanUtils.copyProperties(tmpEmployee, employee);
+			BeanUtils.copyProperties(employeeEditForm, employee);
 			employee.setDelFlg(0L);
-			employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+			if(employeeEditForm.getPassword() != null && !employeeEditForm.getPassword().isEmpty()) {
+				employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+			} else {
+				employee.setPassword(tmpEmployee.getPassword());
+			}
 			repository.save(employee);
 		}	
 	}

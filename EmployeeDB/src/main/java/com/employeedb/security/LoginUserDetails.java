@@ -36,6 +36,10 @@ public class LoginUserDetails implements UserDetails {
 		return user.getPassword();
 	}
 
+	public String getDisplayname() {
+		return user.getFamilyName() + user.getGivenName();
+	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
