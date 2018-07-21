@@ -17,16 +17,18 @@
 					<td th:text="'Password：'"></td>
 					<td><input type="password" class="form-control" id="password" name="password" th:field="${employee.password}"/></td>
 				</tr>
-				<tr>
-					<td th:text="'Role：'"></td>
-					<td>
-						<select id="role" name="role" th:field="${employee.role}">
-	              		<option value="">---</option>
-	              		<option value="admin">admin</option>
-	              		<option value="user">user</option>
-	            		</select>
-					</td>
-				</tr>
+				<div sec:authorize="hasRole('ADMIN')">
+					<tr>
+						<td th:text="'Role：'"></td>
+						<td>
+							<select id="role" name="role" th:field="${employee.role}">
+		              		<option value="">---</option>
+		              		<option value="admin">admin</option>
+		              		<option value="user">user</option>
+		            		</select>
+						</td>
+					</tr>
+				</div>
 				<tr>
 					<td th:text="'Family Name：'"></td>
 					<td><input type="text" class="form-control" id="familyName" name="familyName" th:field="${employee.familyName}"/></td>
