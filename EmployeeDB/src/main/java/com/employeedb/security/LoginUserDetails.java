@@ -36,6 +36,10 @@ public class LoginUserDetails implements UserDetails {
 		return user.getPassword();
 	}
 
+	public Long getSeqNo() {
+		return user.getSeqNo();
+	}
+	
 	public String getDisplayname() {
 		return user.getFamilyName() + user.getGivenName();
 	}

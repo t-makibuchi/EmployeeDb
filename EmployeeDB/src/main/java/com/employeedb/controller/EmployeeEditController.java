@@ -3,6 +3,8 @@ package com.employeedb.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +23,7 @@ public class EmployeeEditController {
 	@Autowired
 	public EmployeeService employeeService;
 
+	@PreAuthorize("hasRole('ROLE_ADMIN') or (principal.seqNo == new Long(#seqNo))")
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView index(ModelAndView mav, @RequestParam("seqNo") String seqNo) {
 		
