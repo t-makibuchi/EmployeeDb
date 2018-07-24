@@ -1,6 +1,7 @@
 package com.employeedb.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import com.employeedb.form.EmployeeDeleteForm;
 import com.employeedb.form.EmployeeEditForm;
 import com.employeedb.form.EmployeeInputForm;
 import com.employeedb.repository.EmployeeRepository;
+import com.employeedb.security.CipherManager;
 
 @Service
 public class EmployeeService {
@@ -24,7 +26,7 @@ public class EmployeeService {
 	
 	public List<Employee> findAll() {
 		List<Employee> employeeList = repository.findByDelFlgEquals(0L);
-		return employeeList;
+		return decryptEmployeeList(employeeList);
 	}
 	
 	public Employee findById(Long employeeId) {
@@ -34,7 +36,7 @@ public class EmployeeService {
 				employee = null;
 			}
 		}
-		return employee;
+		return decryptEmployee(employee);
 	}
 	
 	public void create(EmployeeInputForm EmployeeInputForm) {
@@ -42,7 +44,7 @@ public class EmployeeService {
 		BeanUtils.copyProperties(EmployeeInputForm, employee);
 		employee.setDelFlg(0L);
 		employee.setPassword(passwordEncoder.encode(employee.getPassword()));
-		repository.save(employee);
+		repository.save(encryptEmployee(employee));
 	}
 	
 	public void edit(EmployeeEditForm employeeEditForm) {
@@ -57,7 +59,10 @@ public class EmployeeService {
 			} else {
 				employee.setPassword(tmpEmployee.getPassword());
 			}
-			repository.save(employee);
+			if(employeeEditForm.getRole() == null) {
+				employee.setRole(tmpEmployee.getRole());
+			}
+			repository.save(encryptEmployee(employee));
 		}	
 	}
 	
@@ -67,4 +72,26 @@ public class EmployeeService {
 		repository.save(employee);
 
 	}
+	
+	public Employee encryptEmployee(Employee employee) {
+		employee.setFamilyName(CipherManager.encrypt(employee.getFamilyName()));
+		employee.setGivenName(CipherManager.encrypt(employee.getGivenName()));
+		return employee;
+	}
+	
+	public Employee decryptEmployee(Employee employee) {
+		employee.setFamilyName(CipherManager.decrypt(employee.getFamilyName()));
+		employee.setGivenName(CipherManager.decrypt(employee.getGivenName()));
+		return employee;
+	}
+	
+	public List<Employee> encryptEmployeeList(List<Employee> employeeList) {
+		return employeeList.stream()
+				.map(this :: encryptEmployee).collect(Collectors.toList());
+	};
+	
+	public List<Employee> decryptEmployeeList(List<Employee> employeeList) {
+		return employeeList.stream()
+				.map(this :: decryptEmployee).collect(Collectors.toList());
+	};
 }

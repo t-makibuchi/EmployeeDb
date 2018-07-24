@@ -2,10 +2,12 @@ package com.employeedb.security;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.employeedb.entity.Employee;
+import com.employeedb.service.EmployeeService;
 
 public class LoginUserDetails implements UserDetails {
 	
@@ -41,7 +43,7 @@ public class LoginUserDetails implements UserDetails {
 	}
 	
 	public String getDisplayname() {
-		return user.getFamilyName() + user.getGivenName();
+		return CipherManager.decrypt(user.getFamilyName()) + CipherManager.decrypt(user.getGivenName());
 	}
 	
 	@Override
