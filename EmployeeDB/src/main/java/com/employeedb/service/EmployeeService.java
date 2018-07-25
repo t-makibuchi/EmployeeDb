@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +37,7 @@ public class EmployeeService {
 			if(employee.getDelFlg() == 1) {
 				employee = null;
 			}
-		}
+		}	
 		return decryptEmployee(employee);
 	}
 	
