@@ -31,8 +31,8 @@ public class EmployeeService {
 		return decryptEmployeeList(employeeList);
 	}
 	
-	public Employee findById(Long employeeId) {
-		Employee employee = repository.findById(employeeId).orElse(null);
+	public Employee findById(Long seqNo) {
+		Employee employee = repository.findById(seqNo).orElse(null);
 		if(employee != null) {
 			if(employee.getDelFlg() == 1) {
 				employee = null;
@@ -40,6 +40,11 @@ public class EmployeeService {
 		}	
 		return decryptEmployee(employee);
 	}
+	
+	public Boolean existsById(Long seqNo) {
+		Boolean exists = repository.existsById(seqNo);
+		return exists;
+	};
 	
 	public void create(EmployeeInputForm EmployeeInputForm) {
 		Employee employee = new Employee();
