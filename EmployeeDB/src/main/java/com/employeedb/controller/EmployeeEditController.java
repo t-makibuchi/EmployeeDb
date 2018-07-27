@@ -43,8 +43,7 @@ public class EmployeeEditController {
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public String submit(EmployeeEditForm employeeEditForm) {
 
-		Employee employee = employeeService.findById(employeeEditForm.getSeqNo());
-		if (employee != null) {
+		if (employeeService.existsById(employeeEditForm.getSeqNo())) {
 			employeeService.edit(employeeEditForm);
 			return "redirect:../employeeList";
 		}
