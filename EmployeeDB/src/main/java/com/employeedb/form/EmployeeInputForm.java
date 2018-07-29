@@ -1,5 +1,6 @@
 package com.employeedb.form;
 
+import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
@@ -12,7 +13,9 @@ public class EmployeeInputForm {
 	
 	private String role;
 	
+	@NotBlank
 	private String familyName;
 
+	@NotBlank
 	private String givenName;
 }

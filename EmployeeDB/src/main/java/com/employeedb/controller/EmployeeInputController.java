@@ -2,8 +2,11 @@ package com.employeedb.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +30,7 @@ public class EmployeeInputController {
 	}
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public String submit(EmployeeInputForm employeeInputForm) {
+	public String submit(@Validated EmployeeInputForm employeeInputForm) {
 
 		employeeService.create(employeeInputForm);
 		return "redirect:../employeeList";
