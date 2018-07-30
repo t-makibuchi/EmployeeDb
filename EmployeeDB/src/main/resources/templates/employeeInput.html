@@ -7,8 +7,7 @@
 </head>
 	<body>
 		<h1>User Input</h1>
-		<form method="post" th:action="@{./employeeInput/submit}"
-			th:object="${formModel}">
+		<form method="post" th:action="@{./employeeInput/submit}">
 			<ul>
         		<li th:each="error : ${#fields.detailedErrors()}"
         			class="err" th:txt="${error.message}">
