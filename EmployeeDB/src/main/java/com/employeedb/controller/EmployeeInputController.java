@@ -26,21 +26,22 @@ public class EmployeeInputController {
 	public EmployeeService employeeService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String index(
-			) {
-		
-		return "employeeInput";
+	public ModelAndView index(ModelAndView mav) {
+		mav.addObject("form", new EmployeeInputForm());
+		mav.setViewName("employeeInput");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public ModelAndView submit(
-			@ModelAttribute("FormModel") @Validated EmployeeInputForm employeeInputForm, 
+			@ModelAttribute("Form") @Validated EmployeeInputForm employeeInputForm, 
 			BindingResult bindingResult,
 			ModelAndView mav) {
 
 		ModelAndView res = null;
 		if (bindingResult.hasErrors()) {
 			mav.setViewName("employeeInput");
+			mav.addObject("form", employeeInputForm);
 			res = mav;
 		} else {
 			employeeService.create(employeeInputForm);
