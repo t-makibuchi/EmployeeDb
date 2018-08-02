@@ -4,13 +4,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <div th:include="header"></div>
 <title>User Input</title>
+<style>
+.err { color:red;}
+</style>
 </head>
 	<body>
 		<h1>User Input</h1>
-		<form method="post" th:action="@{./employeeInput/submit}" th:object="${form}">
+		<form method="post" th:action="@{/employeeInput/submit}" th:object="${form}">
 			<ul>
         		<li th:each="error : ${#fields.detailedErrors()}"
-        			class="err" th:txt="${error.message}">
+        			class="err" th:text="${error.message}">
         		</li>
     		</ul>
 			<table>

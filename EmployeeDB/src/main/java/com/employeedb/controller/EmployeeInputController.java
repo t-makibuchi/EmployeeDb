@@ -34,7 +34,7 @@ public class EmployeeInputController {
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	public ModelAndView submit(
-			@ModelAttribute("Form") @Validated EmployeeInputForm employeeInputForm, 
+			@ModelAttribute("form") @Validated EmployeeInputForm employeeInputForm, 
 			BindingResult bindingResult,
 			ModelAndView mav) {
 
