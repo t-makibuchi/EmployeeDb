@@ -13,9 +13,9 @@ public class EmployeeInputForm {
 	
 	private String role;
 	
-	@NotBlank(message="family name is required")
+	@NotBlank(message="family name is required.")
 	private String familyName;
 
-	@NotBlank(message="given name is required")
+	@NotBlank(message="given name is required.")
 	private String givenName;
 }
