@@ -1,6 +1,8 @@
 package com.employeedb.form;
 
+
 import javax.validation.constraints.NotBlank;
+
 import lombok.Data;
 
 @Data
@@ -13,7 +15,7 @@ public class EmployeeInputForm {
 	
 	private String role;
 	
-	@NotBlank(message="family name is required.")
+	@NotBlank(message="{NotBlank}")
 	private String familyName;
 
 	@NotBlank(message="given name is required.")
