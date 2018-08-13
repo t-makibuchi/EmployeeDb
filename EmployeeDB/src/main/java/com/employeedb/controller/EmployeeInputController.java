@@ -36,7 +36,6 @@ public class EmployeeInputController {
 		if (bindingResult.hasErrors()) {
 			mav.setViewName("employeeInput");
 			mav.addObject("form", employeeInputForm);
-			
 			res = mav;
 		} else {
 			employeeService.create(employeeInputForm);
