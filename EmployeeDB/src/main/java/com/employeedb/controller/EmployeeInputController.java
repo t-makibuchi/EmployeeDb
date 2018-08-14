@@ -31,7 +31,6 @@ public class EmployeeInputController {
 			@ModelAttribute("form") @Validated EmployeeInputForm employeeInputForm, 
 			BindingResult bindingResult,
 			ModelAndView mav) {
-
 		ModelAndView res = null;
 		if (bindingResult.hasErrors()) {
 			mav.setViewName("employeeInput");
