@@ -3,6 +3,7 @@ package com.employeedb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,10 @@ public class EmployeeInputController {
 			mav.setViewName("employeeInput");
 			mav.addObject("form", employeeInputForm);
 			res = mav;
+			System.out.println(bindingResult);
+			for(FieldError err: bindingResult.getFieldErrors()) {
+                System.out.println("error message = [" + err.getDefaultMessage() + "]");
+            }
 		} else {
 			employeeService.create(employeeInputForm);
 			res = new ModelAndView("redirect:../employeeList");

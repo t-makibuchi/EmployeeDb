@@ -18,6 +18,6 @@ public class EmployeeInputForm {
 	@NotBlank(message="{NotBlank}")
 	private String familyName;
 
-	@NotBlank(message="given name is required.")
+	@NotBlank(message="{NotBlank}")
 	private String givenName;
 }
