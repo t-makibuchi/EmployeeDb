@@ -37,10 +37,6 @@ public class EmployeeInputController {
 			mav.setViewName("employeeInput");
 			mav.addObject("form", employeeInputForm);
 			res = mav;
-			System.out.println(bindingResult);
-			for(FieldError err: bindingResult.getFieldErrors()) {
-                System.out.println("error message = [" + err.getDefaultMessage() + "]");
-            }
 		} else {
 			employeeService.create(employeeInputForm);
 			res = new ModelAndView("redirect:../employeeList");
