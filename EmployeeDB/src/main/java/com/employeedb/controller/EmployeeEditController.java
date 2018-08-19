@@ -8,6 +8,9 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,14 +44,28 @@ public class EmployeeEditController {
 	}
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public String submit(EmployeeEditForm employeeEditForm) {
+	public ModelAndView submit(
+			@ModelAttribute("form") @Validated EmployeeEditForm employeeEditForm,
+			BindingResult bindingResult,
+			ModelAndView mav
+			) {
 
-		if (employeeService.existsById(employeeEditForm.getSeqNo())) {
-			employeeService.edit(employeeEditForm);
-			return "redirect:../employeeList";
-		}
-		
-		return "illegalUrl";
+		ModelAndView res = null;
+		if (bindingResult.hasErrors()) {
+			mav.setViewName("employeeEdit");
+			mav.addObject("form", employeeEditForm);
+			res = mav;
+		} else {
+			if (employeeService.existsById(employeeEditForm.getSeqNo())) {
+				employeeService.edit(employeeEditForm);
+				res = new ModelAndView("redirect:../employeeList");
+				return res;
+			}
+			
+			res = new ModelAndView("illegallUrl");
+				
+		}		
+		return res;
 	}
 	
 }
