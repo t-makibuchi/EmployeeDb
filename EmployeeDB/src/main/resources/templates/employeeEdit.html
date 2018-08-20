@@ -7,7 +7,7 @@
 </head>
 	<body>
 		<h1>Employee Edit</h1>
-		<form method="post" th:action="@{./employeeEdit/submit}">
+		<form method="post" th:action="@{/employeeEdit/submit}" th:object="${form}">
 			<table>
 				<tr>
 					<td th:text="'Username：'"></td>
@@ -31,11 +31,17 @@
 				</div>
 				<tr>
 					<td th:text="'Family Name：'"></td>
-					<td><input type="text" class="form-control" id="familyName" name="familyName" th:field="${employee.familyName}"/></td>
+					<td>
+						<input type="text" class="form-control" id="familyName" name="familyName" th:field="${employee.familyName}"/>
+						<span th:if="${#fields.hasErrors('familyName')}" th:errors="*{familyName}" style="color: red"></span>
+					</td>
 				</tr>
 				<tr>
 					<td th:text="'Given Name：'"></td>
-					<td><input type="text" id="givenName" name="givenName" th:field="${employee.givenName}"/></td>
+					<td>
+						<input type="text" id="givenName" name="givenName" th:field="${employee.givenName}"/>
+						<span th:if="${#fields.hasErrors('familyName')}" th:errors="*{familyName}" style="color: red"></span>
+					</td>
 				</tr>
 			</table>
 			<input type="hidden" name="seqNo" th:value="${employee.seqNo}" />

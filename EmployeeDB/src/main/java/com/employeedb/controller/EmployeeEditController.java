@@ -33,6 +33,7 @@ public class EmployeeEditController {
 	public ModelAndView index(ModelAndView mav, @RequestParam("seqNo") String seqNo) {
 		
 		Employee employee = employeeService.findById(Long.parseLong(seqNo));
+		mav.addObject("form", new EmployeeEditForm());
 		if (employee != null) {
 			mav.setViewName("employeeEdit");
 			mav.addObject("employee", employee);
@@ -54,15 +55,16 @@ public class EmployeeEditController {
 		if (bindingResult.hasErrors()) {
 			mav.setViewName("employeeEdit");
 			mav.addObject("form", employeeEditForm);
+			Employee employee = employeeService.findById(employeeEditForm.getSeqNo());
+			mav.addObject("employee", employee);
 			res = mav;
 		} else {
 			if (employeeService.existsById(employeeEditForm.getSeqNo())) {
 				employeeService.edit(employeeEditForm);
 				res = new ModelAndView("redirect:../employeeList");
-				return res;
+			} else {
+				res = new ModelAndView("illegalUrl");
 			}
-			
-			res = new ModelAndView("illegallUrl");
 				
 		}		
 		return res;
