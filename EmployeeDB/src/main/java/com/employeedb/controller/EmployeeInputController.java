@@ -42,7 +42,6 @@ public class EmployeeInputController {
 			res = new ModelAndView("redirect:../employeeList");
 			return res;
 		}
-		
 		return res;
 	}
 	
