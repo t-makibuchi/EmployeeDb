@@ -65,7 +65,6 @@ public class EmployeeEditController {
 			} else {
 				res = new ModelAndView("illegalUrl");
 			}
-				
 		}		
 		return res;
 	}
