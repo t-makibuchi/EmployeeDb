@@ -13,6 +13,8 @@ public class EmployeeInputForm {
 	
 	private String password;
 	
+	private String confirmPassword;
+	
 	private String role;
 	
 	@NotBlank(message="{NotBlank}")
@@ -20,4 +22,6 @@ public class EmployeeInputForm {
 
 	@NotBlank(message="{NotBlank}")
 	private String givenName;
+	
+
 }
