@@ -1,6 +1,7 @@
 package com.employeedb.form;
 
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
@@ -23,5 +24,12 @@ public class EmployeeInputForm {
 	@NotBlank(message="{NotBlank}")
 	private String givenName;
 	
-
+	@AssertTrue(message="Password does not match the confirm password.")
+	public boolean isConfirmPasswordMatched() {
+		if(confirmPassword == null || confirmPassword.isEmpty()) {
+			return true;
+		}
+		return confirmPassword.equals(password);
+	}
+	
 }

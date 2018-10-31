@@ -46,9 +46,13 @@ public class EmployeeService {
 		return exists;
 	};
 	
-	public void create(EmployeeInputForm EmployeeInputForm) {
+	public void create(EmployeeInputForm employeeInputForm) {
 		Employee employee = new Employee();
-		BeanUtils.copyProperties(EmployeeInputForm, employee);
+		BeanUtils.copyProperties(employeeInputForm, employee);
+		employee.setUsername(employeeInputForm.getUsername());
+		employee.setRole(employeeInputForm.getRole());
+		employee.setFamilyName(employeeInputForm.getFamilyName());
+		employee.setGivenName(employeeInputForm.getGivenName());
 		employee.setDelFlg(0L);
 		employee.setPassword(passwordEncoder.encode(employee.getPassword()));
 		repository.save(encryptEmployee(employee));
