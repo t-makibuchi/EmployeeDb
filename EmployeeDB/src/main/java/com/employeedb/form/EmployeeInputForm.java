@@ -24,7 +24,7 @@ public class EmployeeInputForm {
 	@NotBlank(message="{NotBlank}")
 	private String givenName;
 	
-	@AssertTrue(message="Password does not match the confirm password.")
+	@AssertTrue(message="{ConfirmPasswordUnmatch}")
 	public boolean isConfirmPasswordMatched() {
 		if(confirmPassword == null || confirmPassword.isEmpty()) {
 			return true;
