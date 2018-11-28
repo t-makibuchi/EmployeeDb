@@ -20,7 +20,7 @@
 			<table>
 				<tr>
 					<td th:text="'Username：'"></td>
-					<td><input type="text" class="form-control" id="username" name="username"/></td>
+					<td><input type="text" class="form-control" id="username" name="username" th:field="*{username}"/></td>
 				</tr>
 				<tr>
 					<td th:text="'Password：'"></td>
@@ -33,7 +33,7 @@
 				<tr>
 					<td th:text="'Role：'"></td>
 					<td>
-						<select id="role" name="role">
+						<select id="role" name="role" th:field="*{role}">
 	              		<option value="">---</option>
 	              		<option value="admin">admin</option>
 	              		<option value="user">user</option>
@@ -42,11 +42,11 @@
 				</tr>
 				<tr>
 					<td th:text="'Family Name：'"></td>
-					<td><input type="text" class="form-control" id="familyName" name="familyName"/></td>
+					<td><input type="text" class="form-control" id="familyName" name="familyName" th:field="*{familyName}"/></td>
 				</tr>
 				<tr>
 					<td th:text="'Given Name：'"></td>
-					<td><input type="text" id="givenName" name="givenName"/></td>
+					<td><input type="text" id="givenName" name="givenName" th:field="*{givenName}"/></td>
 				</tr>
 			</table>
 			<button type="submit" class="btn btn-default">Register</button>
