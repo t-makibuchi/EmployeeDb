@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.employeedb.entity.Employee;
+import com.employeedb.exception.DuplicateUsernameException;
 import com.employeedb.form.EmployeeDeleteForm;
 import com.employeedb.form.EmployeeEditForm;
 import com.employeedb.form.EmployeeInputForm;
@@ -105,4 +106,11 @@ public class EmployeeService {
 		return employeeList.stream()
 				.map(this :: decryptEmployee).collect(Collectors.toList());
 	};
+	
+	public void checkUsernameDuplication(String username) throws DuplicateUsernameException {
+		if(repository.findByUsername(username).size() != 0 ) {
+			throw new DuplicateUsernameException();
+		};
+		
+	}
 }
